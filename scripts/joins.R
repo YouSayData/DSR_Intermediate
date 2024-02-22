@@ -1,4 +1,10 @@
 
+# 0. Libraries needed -----------------------------------------------------
+
+library(tidyverse)
+library(nycflights13)
+library(skimr)
+
 # I. Relational Data ---------------------------------------------------------
 
 # When working with relational data, we look at three types of functions:
@@ -38,14 +44,6 @@ weather |>
   filter(n > 1)
 
 # Sometimes you need a surrogate key
-
-
-# Question I -------------------------------------------------------------
-
-# We know that some days of the year are “special”, and fewer people than usual fly on them. 
-# How might you represent that data as a data frame? 
-# What would be the primary keys of that table? How would it connect to the existing tables?
-
 
 # Exercise I ---------------------------------------------------------------
 
@@ -196,9 +194,9 @@ flights %>%
 
 # Exercise III ------------------------------------------------------------
 
-# 1. What does it mean for a flight to have a missing tailnum? What do the tail numbers that don’t have a matching record in planes have in common? (Hint: one variable explains ~90% of the problems.)
-# 2. Filter flights to only show flights with planes that have flown at least 100 flights.
-# 3. Find the 48 hours (over the course of the whole year) that have the worst delays. Cross-reference it with the weather data. Can you see any patterns?
+# 1. What does it mean for a flight to have a missing tailnum? 
+# 2. What do the tail numbers that don’t have a matching record in planes have in common?
+# 3. Filter flights to only show flights with planes that have flown at least 100 flights.
 
 # Recipe for working with relational data
 # Data is often not cleaned!

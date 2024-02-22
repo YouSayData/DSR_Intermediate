@@ -102,27 +102,19 @@ map_dbl(df, median)
 map_dbl(df, sd)
 
 # Or in a pipe
-df %>% map_dbl(mean)
+df |>  map_dbl(mean)
 
 df$a[2] <- NA
 df
-df %>% map_dbl(mean)
+df |>  map_dbl(mean)
 map_dbl(df, mean, na.rm = T)
 
 
+# Proper pipes ---------------------------------------------------------------
 
-# Shortcuts ---------------------------------------------------------------
-
-# this is verbose
-mod_coef <- mtcars %>% 
-  split(.$cyl) %>% 
-  map(function(df) lm(mpg ~ wt, data = df)) %>%
-  map(coef)
-
-# less verbose
-mod_coef <- mtcars %>% 
-  split(.$cyl) %>% 
-  map(~lm(mpg ~ wt, data = .)) %>%
+mod_coef <- mtcars |>  
+  split(~cyl) |> 
+  map(~lm(mpg ~ wt, data = .)) |> 
   map(coef)
 
 

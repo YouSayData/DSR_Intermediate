@@ -1,3 +1,7 @@
+# 0. Libraries needed -----------------------------------------------------
+
+library(tidyverse)
+
 # 1. Tidy Data ---------------------------------------------------------------
 
 # What is the difference between those tibbles what are the similarities?
@@ -14,11 +18,9 @@ table4b
 # 2. Each observation must have its own row.
 # 3. Each value must have its own cell.
 
-# Practical Rules ---------------------------------------------------------
-
+# This means: 
 # 1. Put each dataset in a tibble.
 # 2. Put each variable in a column.
-
 
 # Reasons for Tidy Data ------------------------------------------------
 
@@ -49,6 +51,7 @@ table1 |>
 # 2. One observation might be scattered across multiple rows.
 
 # Pivoting ----------------------------------------------------------------
+# Making data longer or wider
 
 # pivot_longer()
 
@@ -84,21 +87,11 @@ table2 |>
 
 # 1.2. Exercise -----------------------------------------------------------
 
-# 1. Tidy the simple tibble below. 
-# Do you need to make it wider or longer? What are the variables?
-
-preg <- tribble(
-  ~pregnant, ~male, ~female,
-  "yes",     NA,    10,
-  "no",      20,    12
-)
-
-# 2. Tidy this dataset
+# 1. Tidy this dataset
 
 billboard
 
-# Divide and conquer ------------------------------------------------------
-
+# Separating out values or uniting them -----------------------------------
 
 # Separate ----------------------------------------------------------------
 
@@ -111,6 +104,13 @@ table3 |>
 # better
 table3 |> 
   separate(rate, into = c("cases", "population"), convert = TRUE)
+
+# separate wider is now a bit more verbose
+table3 |> 
+  separate_wider_delim(rate, delim = "/", names = c("cases", "population"))
+
+table3 |> 
+  separate_wider_regex(rate, pattern = c(cases = "\\d+", "/", population = "\\d+"))
 
 
 # Unite -------------------------------------------------------------------
